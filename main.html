@@ -8,13 +8,15 @@
 </head>
 <body>
     <div class="video-player">
-        <!-- Add the class 'player__video' here to match the test case -->
         <video id="video" class="video player__video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
         
         <div class="controls">
-            <button id="rewind" class="control-btn">« 10s</button>
-            <button id="play-pause" class="control-btn">►</button>
-            <button id="forward" class="control-btn">25s »</button>
+            <!-- Add the 'toggle' class to this button for play/pause -->
+            <button id="play-pause" class="control-btn toggle">►</button>
+            
+            <!-- Other control buttons -->
+            <button id="rewind" class="control-btn rewind">« 10s</button>
+            <button id="forward" class="control-btn forward">25s »</button>
 
             <div class="progress-container">
                 <div class="progress-bar">
