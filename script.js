@@ -1,46 +1,44 @@
 const video = document.getElementById('video');
-const playButton = document.getElementById('playButton');
-const rewindButton = document.getElementById('rewind');
-const skipButton = document.getElementById('skip');
-const progress = document.getElementById('progress');
+const playPauseBtn = document.getElementById('play-pause');
+const progressBar = document.getElementById('progress-filled');
 const volumeControl = document.getElementById('volume');
-const playbackSpeedControl = document.getElementById('playbackSpeed');
-const speedBar = document.querySelector('.speed-bar');
+const speedControl = document.getElementById('speed');
+const rewindBtn = document.getElementById('rewind');
+const forwardBtn = document.getElementById('forward');
 
-// Toggle play/pause
-playButton.addEventListener('click', () => {
-  if (video.paused) {
-    video.play();
-    playButton.textContent = '❚ ❚';
-  } else {
-    video.pause();
-    playButton.textContent = '►'; 
-  }
-});
-
-rewindButton.addEventListener('click', () => {
-  video.currentTime -= 10;
-});
-
-skipButton.addEventListener('click', () => {
-  video.currentTime += 25;
+playPauseBtn.addEventListener('click', () => {
+    if (video.paused) {
+        video.play();
+        playPauseBtn.textContent = '❚ ❚'; // Pause icon
+    } else {
+        video.pause();
+        playPauseBtn.textContent = '►'; // Play icon
+    }
 });
 
 video.addEventListener('timeupdate', () => {
-  const percent = (video.currentTime / video.duration) * 100;
-  progress.value = percent;
-});
-
-progress.addEventListener('input', () => {
-  const newTime = (progress.value * video.duration) / 100;
-  video.currentTime = newTime;
+    const progress = (video.currentTime / video.duration) * 100;
+    progressBar.style.width = `${progress}%`;
 });
 
 volumeControl.addEventListener('input', () => {
-  video.volume = volumeControl.value;
+    video.volume = volumeControl.value;
 });
 
-playbackSpeedControl.addEventListener('input', () => {
-  video.playbackRate = playbackSpeedControl.value;
-  speedBar.textContent = `${playbackSpeedControl.value}×`;
+// Playback speed control functionality
+speedControl.addEventListener('input', () => {
+    video.playbackRate = speedControl.value;
+});
+
+rewindBtn.addEventListener('click', () => {
+    video.currentTime -= 10;
+});
+
+forwardBtn.addEventListener('click', () => {
+    video.currentTime += 25;
+});
+
+progressBar.parentElement.addEventListener('click', (e) => {
+    const progress = (e.offsetX / progressBar.parentElement.offsetWidth) * video.duration;
+    video.currentTime = progress;
 });

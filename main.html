@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Custom Video Player</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Player</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="video-player">
+        <video id="video" class="video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+        
+        <div class="controls">
+            <button id="rewind" class="control-btn">« 10s</button>
+            <button id="play-pause" class="control-btn">►</button>
+            <button id="forward" class="control-btn">25s »</button>
 
-  <div class="wrapper">
-    <video class="flex" id="video" width="765" height="430" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
-    
-    <div class="controls">
-      <button id="playButton" class="toggle player__button">►</button>
-      <button id="rewind" class="rewind">« 10s</button>
-      <button id="skip" class="skip">25s »</button>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progress-filled" class="progress-filled"></div>
+                </div>
+            </div>
 
-      <input type="range" id="progress" class="progress__filled" value="0" max="100">
-      
-      <label for="volume">Volume:</label>
-      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.75">
-      
-      <label for="playbackSpeed">Speed:</label>
-      <input type="number" id="playbackSpeed" min="0.5" max="2" step="0.1" value="1">
-      
-      <div class="speed">
-        <div class="speed-bar">1×</div>
-      </div>
+            <input id="volume" type="range" class="control-input" min="0" max="1" step="0.01" value="0.75">
+            <input id="speed" type="range" class="control-input" min="0.5" max="2" step="0.1" value="1">
+        </div>
     </div>
-  </div>
 
-<script src="./script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
